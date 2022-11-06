@@ -1,0 +1,45 @@
+.time {
+
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeValue {
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    color: #4A4A49;
+    font-weight: 700;
+}
+
+.headerTime{
+    font-size: 64px;
+    line-height: 72px;
+}
+
+.loginTime{
+    font-size: 180px;
+    line-height: 207px;
+}
+
+.dateValue {
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+
+    color: #BAC1C6;
+}
+
+.headerDate{
+    font-size: 32px;
+    line-height: 36px;
+}
+
+.loginDate{
+    font-size: 84px;
+    line-height: 97px;
+}
