@@ -1,0 +1,9 @@
+.header{
+    padding: 17px 40px;
+}
+
+.wrapper{
+display: flex;
+    justify-content: space-between;
+
+}
