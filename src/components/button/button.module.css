@@ -1,0 +1,12 @@
+.button {
+    font-family: Ubuntu, sans-serif;
+    font-size: 48px;
+    line-height: 52px;
+    font-weight: 400;
+    padding: 28px 0;
+    color: #FFFFFF;
+    background-color: #D63E2F;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
