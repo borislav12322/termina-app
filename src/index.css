@@ -1,5 +1,12 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -11,3 +18,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root{
+  height: 100vh;
+  background-image: url('./assets/images/bg.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-bottom: 52px;
+}
+
+#button_next{
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 33px;
+}
+
+#closeBtn{
+  margin: 0;
+}
+
+@font-face {
+  font-family: Ubuntu, sans-serif;
+  src: url("./assets/fonts/Ubuntu-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+

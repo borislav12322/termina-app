@@ -1,4 +1,4 @@
 export const routesPaths = {
-    login: '/',
-    shareData: '/shareData',
-}
+  login: '/',
+  shareData: '/shareData',
+};
