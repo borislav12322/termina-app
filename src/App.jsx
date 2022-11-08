@@ -4,6 +4,7 @@ import Wrapper from './components/wrapper';
 import { routesPaths } from './constans/routesPathes';
 import Login from './pages/login';
 import ShareData from './pages/shareData';
+import TakePhoto from './pages/take-photo';
 
 const App = () => {
   return (
@@ -15,6 +16,8 @@ const App = () => {
 
         <Route path="/" element={<Wrapper />}>
           <Route path={routesPaths.shareData} element={<ShareData />} />
+
+          <Route path={routesPaths.takePhoto} element={<TakePhoto />} />
         </Route>
       </Routes>
     </BrowserRouter>
