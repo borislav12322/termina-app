@@ -1,0 +1,91 @@
+.takePhoto{
+
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 95px;
+}
+
+.textInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 30px;
+  margin-top: 20px;
+}
+
+.boxContent{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(74, 74, 73, 0.15);
+  border-radius: 40px;
+  max-width: 952px;
+  width: 100%;
+  padding: 32px 0;
+}
+
+.videoBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 40px;
+}
+
+.webcam-video {
+  position: relative;
+  width: 320px;
+  height: 300px;
+}
+
+video {
+  width: 888px;
+  height: 686px;
+  border-radius: 24px;
+}
+
+canvas {
+  left: 0;
+  bottom: 60px;
+}
+.photo-booth {
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  overflow-x: auto;
+}
+
+.strip {
+  display: flex;
+}
+
+.visitorImage{
+  width: 888px;
+  height: 686px;
+  border-radius: 24px;
+  object-fit: contain;
+}
+
+.videoInner{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.counter{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 210px;
+  font-weight: 600;
+  color: #D63E2F;
+}

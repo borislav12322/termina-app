@@ -1,0 +1,11 @@
+.text {
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 60px;
+  text-align: center;
+  color: #4a4a49;
+  max-width: 888px;
+  width: 100%;
+}
