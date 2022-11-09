@@ -34,7 +34,7 @@ code {
   right: 33px;
 }
 
-#closeBtn{
+#closeBtn,#takePhoto,#repeatPhoto{
   margin: 0;
 }
 
