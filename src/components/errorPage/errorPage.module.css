@@ -14,8 +14,17 @@
 .title {
 }
 
+.textBox{
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  align-items: center;
+}
+
 .text {
   max-width: 952px;
   width: 100%;
   justify-self: center;
 }
+
+

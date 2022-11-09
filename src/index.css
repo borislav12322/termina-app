@@ -38,6 +38,15 @@ code {
   margin: 0;
 }
 
+#repeatButtonError{
+  margin: 0;
+  max-width: 368px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .commonTitle {
   font-family: 'Ubuntu', sans-serif;
   font-style: normal;

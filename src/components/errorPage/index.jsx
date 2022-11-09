@@ -9,13 +9,16 @@ const ErrorPage = ({ title, textOne, isRepeatButtonVisible, textTwo }) => {
     <div className={s.errorPage}>
       <div className={s.wrapper}>
         <h2 className={`${s.title} commonTitle`}>{title}</h2>
+        <div className={s.textBox}>
+          {textOne && <p className={`${s.text} commonText`}>{textOne}</p>}
+          {textTwo && <p className={`${s.text} commonText`}>{textTwo}</p>}
+        </div>
 
-        {textOne && <p className={`${s.text} commonText`}>{textOne}</p>}
-        {textTwo && <p className={`${s.text} commonText`}>{textTwo}</p>}
-
-        {isRepeatButtonVisible && <Button text="Повторить" />}
         <div />
       </div>
+      {isRepeatButtonVisible && (
+        <Button text="Повторить" paddingLeftRight="30px" id="repeatButtonError" />
+      )}
     </div>
   );
 };
