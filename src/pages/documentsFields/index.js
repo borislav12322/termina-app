@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../components/button';
 import Input from '../../components/input';
+// eslint-disable-next-line import/no-cycle
 import { routesPaths } from '../../constans/routesPathes';
 
 import s from './documentFields.module.css';

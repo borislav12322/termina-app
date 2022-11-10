@@ -31,6 +31,14 @@
         "**/*.spec.js"
     ] }],
     "rules": {
+        "react/prop-types": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "no-param-reassign": "off",
+        "react/jsx-no-useless-fragment": "off",
+        "camelcase": "off",
+        "import/no-cycle": "off",
+        "react/button-has-type": "off",
         "import/order": [
             "error",
             {
@@ -71,13 +79,7 @@
         "no-debugger": "error",
         "no-unused-vars": "off",
         "no-use-before-define": "off",
-        "no-param-reassign": ["error", {
-            "props": true,
-            "ignorePropertyModificationsFor": [
-                "state",
-                "self"
-            ]
-        }],
+
         "react/display-name": "off",
         "react/react-in-jsx-scope": "off",
         "react/require-default-props": "off",

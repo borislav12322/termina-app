@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import Wrapper from './components/wrapper';
@@ -19,6 +21,8 @@ const App = () => {
         <Route path={routesPaths.login} element={<Login />} />
 
         <Route path="/" element={<Navigate to={routesPaths.login} />} />
+
+        <Route path="*" element={<Navigate to={routesPaths.login} />} />
 
         <Route path="/" element={<Wrapper />}>
           <Route path={routesPaths.shareData} element={<ShareData />} />

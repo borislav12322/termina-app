@@ -13,8 +13,6 @@ const ErrorPage = ({ title, textOne, isRepeatButtonVisible, textTwo }) => {
           {textOne && <p className={`${s.text} commonText`}>{textOne}</p>}
           {textTwo && <p className={`${s.text} commonText`}>{textTwo}</p>}
         </div>
-
-        <div />
       </div>
       {isRepeatButtonVisible && (
         <Button text="Повторить" paddingLeftRight="30px" id="repeatButtonError" />
