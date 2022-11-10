@@ -15,7 +15,7 @@ const HomeButton = () => {
   };
 
   return (
-    <button type="button" className={s.button} onClick={onClickHandle}>
+    <button type="button" className={s.button} onClick={onClickHandle} id="home-button">
       <img src={HomeIcon} alt="домой" />
     </button>
   );

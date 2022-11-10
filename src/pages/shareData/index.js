@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../components/button';
 import Modal from '../../components/modal';
+import { routesPaths } from '../../constans/routesPathes';
 import { App } from '../../store';
 
 import s from './shareData.module.css';
@@ -13,6 +14,7 @@ const ShareData = () => {
 
   const buttonHandle = e => {
     e.preventDefault();
+    navigate(routesPaths.documentScan);
   };
 
   const pdAgrementButtonHandle = e => {

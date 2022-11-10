@@ -2,11 +2,11 @@ import React from 'react';
 
 import s from './button.module.css';
 
-const Button = ({ text, type, paddingLeftRight, onClick, id }) => {
+const Button = ({ text, type, paddingLeftRight, onClick, id, buttonWhite }) => {
   return (
     <button
       id={id}
-      className={s.button}
+      className={`${s.button} ${buttonWhite && s.buttonWhite}`}
       onClick={onClick}
       type={type}
       style={{ paddingLeft: paddingLeftRight, paddingRight: paddingLeftRight }}
