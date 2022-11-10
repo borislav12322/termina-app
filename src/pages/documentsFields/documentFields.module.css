@@ -1,0 +1,51 @@
+.documentFields {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  padding-top: 120px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 888px;
+  width: 100%;
+  height: 100%;
+}
+
+.title{
+  margin-bottom: 122px;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  row-gap: 39px;
+  max-width: 888px;
+  width: 100%;
+  padding: 49px 44px 60px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(74, 74, 73, 0.15);
+  border-radius: 40px;
+  margin-bottom: 88px;
+}
+
+.currentBox {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+}
+.text {
+  width: 952px;
+}
+
+.buttonBox{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+button#not_correct{
+  margin: 0;
+}

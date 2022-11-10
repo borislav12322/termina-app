@@ -163,6 +163,7 @@ const TakePhoto = () => {
                 onClick={() => {
                   setPhoto('');
                 }}
+                buttonWhite
               />
             )}
           </div>

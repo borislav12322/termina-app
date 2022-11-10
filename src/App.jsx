@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Wrapper from './components/wrapper';
 import { routesPaths } from './constans/routesPathes';
 import DocumentScan from './pages/documentScan';
+import DocumentFields from './pages/documentsFields';
 import ErrorPhotoResultPage from './pages/errorPhotoResultPage';
 import ErrorPhotoResultRepeatPage from './pages/errorPhotoResultRepeatPage';
 import IncorrectDataErrorPage from './pages/incorrectDataErrorPage';
@@ -23,6 +24,7 @@ const App = () => {
           <Route path={routesPaths.shareData} element={<ShareData />} />
 
           <Route path={routesPaths.takePhoto} element={<TakePhoto />} />
+          <Route path={routesPaths.documentFields} element={<DocumentFields />} />
           <Route path={routesPaths.documentScan} element={<DocumentScan />} />
           <Route path={routesPaths.incorrectData} element={<IncorrectDataErrorPage />} />
           <Route path={routesPaths.errorPhotoResult} element={<ErrorPhotoResultPage />} />
