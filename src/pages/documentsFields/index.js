@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import { routesPaths } from '../../constans/routesPathes';
+import { App } from '../../store';
 
 import s from './documentFields.module.css';
 
@@ -37,6 +38,12 @@ const DocumentFields = () => {
     setInputValues(oldValue => ({ ...oldValue, [name]: value }));
   };
 
+  const visitorInfo = App.useState(
+    s => s.app.documentVisitorData?.OcrFields?.DocVisualExtendedInfo?.pArrayFields,
+  );
+
+  console.log(visitorInfo);
+
   return (
     <div className={s.documentFields}>
       <div className={s.wrapper}>
@@ -45,19 +52,19 @@ const DocumentFields = () => {
           <Input
             title="Фамилия"
             name="last_name"
-            value={last_name}
+            value={visitorInfo?.[22]?.Buf_Text}
             onChange={onChangeHandle}
           />
           <Input
             title="Имя"
             name="first_name"
-            value={first_name}
+            value={visitorInfo?.[23]?.Buf_Text}
             onChange={onChangeHandle}
           />
           <Input
             title="Отчество"
             name="middle_name"
-            value={middle_name}
+            value={visitorInfo?.[24]?.Buf_Text}
             onChange={onChangeHandle}
           />
           <Input
@@ -69,7 +76,7 @@ const DocumentFields = () => {
           <Input
             title="Серия и номер документа"
             name="number"
-            value={number}
+            value={visitorInfo?.[5]?.Buf_Text}
             onChange={onChangeHandle}
           />
         </div>

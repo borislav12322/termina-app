@@ -4,5 +4,6 @@ export const App = new Store({
   app: {
     isLoading: false,
     isModalVisible: false,
+    documentVisitorData: null,
   },
 });
