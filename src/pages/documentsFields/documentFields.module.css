@@ -14,7 +14,7 @@
   height: 100%;
 }
 
-.title{
+.title {
   margin-bottom: 122px;
 }
 
@@ -40,12 +40,27 @@
   width: 952px;
 }
 
-.buttonBox{
+.buttonBox {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-button#not_correct{
+button#not_correct {
   margin: 0;
+}
+
+.documentText {
+  width: 100%;
+  background: #ffffff;
+  border: 5px solid #bac1c6;
+  border-radius: 20px;
+  height: 108px;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 72px;
+  text-align: center;
+  color: #4a4a49;
 }

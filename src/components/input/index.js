@@ -6,6 +6,7 @@ const Input = ({ name, title, value, onChange }) => {
   return (
     <label htmlFor={name} className={s.label}>
       <span className={s.title}>{title}</span>
+      <span className={s.bg} />
       <input
         className={s.input}
         value={value}

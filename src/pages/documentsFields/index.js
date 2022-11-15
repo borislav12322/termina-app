@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../components/button';
 import Input from '../../components/input';
+import TextField from '../../components/textField';
 import { routesPaths } from '../../constans/routesPathes';
+import { App } from '../../store';
 
 import s from './documentFields.module.css';
 
@@ -37,41 +39,34 @@ const DocumentFields = () => {
     setInputValues(oldValue => ({ ...oldValue, [name]: value }));
   };
 
+  const visitorInfo = App.useState(
+    s => s.app.documentVisitorData?.OcrFields?.DocVisualExtendedInfo?.pArrayFields,
+  );
+
+  const currentYear = new Date().getFullYear().toString().slice(-2);
+
+  const modifiedData = visitorInfo && visitorInfo?.[8]?.Buf_Text;
+
+  const year = modifiedData?.split('')?.slice(0, 2).join('');
+  const month = modifiedData?.split('')?.slice(2, 4).join('');
+  const day = modifiedData?.split('')?.slice(4, 6).join('');
+
+  const fullYear = year > currentYear ? `19${year}` : `20${year}`;
+
+  const photo = App.useState(s => s.app.documentVisitorData);
+
+  console.log(photo?.Image?.image);
+
   return (
     <div className={s.documentFields}>
       <div className={s.wrapper}>
         <h2 className={`${s.title} commonTitle`}>Результат сканирования</h2>
         <div className={s.inputBox}>
-          <Input
-            title="Фамилия"
-            name="last_name"
-            value={last_name}
-            onChange={onChangeHandle}
-          />
-          <Input
-            title="Имя"
-            name="first_name"
-            value={first_name}
-            onChange={onChangeHandle}
-          />
-          <Input
-            title="Отчество"
-            name="middle_name"
-            value={middle_name}
-            onChange={onChangeHandle}
-          />
-          <Input
-            title="Дата рождения"
-            name="birthday"
-            value={birthday}
-            onChange={onChangeHandle}
-          />
-          <Input
-            title="Серия и номер документа"
-            name="number"
-            value={number}
-            onChange={onChangeHandle}
-          />
+          <TextField title="Фамилия" text={visitorInfo?.[22]?.Buf_Text} />
+          <TextField title="Имя" text={visitorInfo?.[23]?.Buf_Text} />
+          <TextField title="Отчество" text={visitorInfo?.[24]?.Buf_Text} />
+          <TextField title="Дата рождения" text={`${day}.${month}.${fullYear}`} />
+          <TextField title="Серия и номер документа" text={visitorInfo?.[5]?.Buf_Text} />
         </div>
         <div className={s.currentBox}>
           <p className={`${s.text} commonText`}>
