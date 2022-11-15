@@ -15,7 +15,6 @@ const Input = ({ name, title, value, onChange }) => {
         id={name}
         name={name}
         type="text"
-        autoFocus={false}
       />
     </label>
   );
