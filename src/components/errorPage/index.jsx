@@ -5,6 +5,10 @@ import Button from '../button';
 import s from './errorPage.module.css';
 
 const ErrorPage = ({ title, textOne, isRepeatButtonVisible, textTwo }) => {
+  const onClickHandle = e => {
+    e.preventDefault();
+  };
+
   return (
     <div className={s.errorPage}>
       <div className={s.wrapper}>

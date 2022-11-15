@@ -5,14 +5,29 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button';
 import Text from '../../components/text';
 import Title from '../../components/title';
+import { routesPaths } from '../../constans/routesPathes';
+import { face } from '../../DAL/api';
+import { App } from '../../store';
 
 import s from './take-photo.module.css';
 
 const TakePhoto = () => {
   const navigate = useNavigate();
 
+  const regulaPhoto = App.useState(s => s?.app?.documentVisitorData?.Image?.image);
+  const terminalPhoto = App.useState(s => s?.app?.terminalVisitorPhoto);
+
   const buttonHandle = e => {
     e.preventDefault();
+    face
+      .compare(`data:image/jpeg;base64,${regulaPhoto}`, terminalPhoto)
+      .then((res, rej) => {
+        console.log(res.data);
+      })
+      .catch(e => {
+        navigate(routesPaths.repeatErrorPhotoResult);
+      });
+    // navigate('');
   };
 
   const videoRef = useRef(null);
@@ -82,6 +97,9 @@ const TakePhoto = () => {
     const link = document.createElement('a');
 
     setPhoto(data);
+    App.update(s => {
+      s.app.terminalVisitorPhoto = data;
+    });
 
     link.href = data;
     link.setAttribute('download', 'myWebcam');
@@ -162,6 +180,9 @@ const TakePhoto = () => {
                 id="repeatPhoto"
                 onClick={() => {
                   setPhoto('');
+                  App.update(s => {
+                    s.app.terminalVisitorPhoto = '';
+                  });
                 }}
                 buttonWhite
               />
