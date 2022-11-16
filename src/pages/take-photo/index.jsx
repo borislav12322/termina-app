@@ -97,6 +97,7 @@ const TakePhoto = () => {
     const link = document.createElement('a');
 
     setPhoto(data);
+
     App.update(s => {
       s.app.terminalVisitorPhoto = data;
     });

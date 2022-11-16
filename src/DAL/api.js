@@ -27,3 +27,10 @@ export const face = {
       face_two,
     }),
 };
+
+export const phone = {
+  search: phone =>
+    axiosInstance
+      .get(`http://192.168.4.110:8000/api/v1/search/pass?phone=${phone}`)
+      .then(res => res.data),
+};

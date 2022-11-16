@@ -10,4 +10,5 @@ export const routesPaths = {
   repeatErrorPhotoResult: '/repeat-photo-result-error',
   scanError: '/scan-error',
   documentFields: '/document-fields',
+  phoneNumber: '/phone',
 };

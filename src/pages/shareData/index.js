@@ -14,7 +14,7 @@ const ShareData = () => {
 
   const buttonHandle = e => {
     e.preventDefault();
-    navigate(routesPaths.documentScan);
+    navigate(routesPaths.phoneNumber);
   };
 
   const pdAgrementButtonHandle = e => {

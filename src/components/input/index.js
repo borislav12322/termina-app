@@ -2,7 +2,7 @@ import React from 'react';
 
 import s from './input.module.css';
 
-const Input = ({ name, title, value, onChange }) => {
+const Input = ({ name, title, value, onChange, maxSymbols, type, onFocus }) => {
   return (
     <label htmlFor={name} className={s.label}>
       <span className={s.title}>{title}</span>
@@ -14,7 +14,9 @@ const Input = ({ name, title, value, onChange }) => {
         placeholder={title}
         id={name}
         name={name}
-        type="text"
+        type={type || 'text'}
+        maxLength={11}
+        onFocus={onFocus}
       />
     </label>
   );

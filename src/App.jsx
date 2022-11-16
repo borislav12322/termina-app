@@ -8,6 +8,7 @@ import ErrorPhotoResultPage from './pages/errorPhotoResultPage';
 import ErrorPhotoResultRepeatPage from './pages/errorPhotoResultRepeatPage';
 import IncorrectDataErrorPage from './pages/incorrectDataErrorPage';
 import Login from './pages/login';
+import PhoneNumber from './pages/phoneNumber';
 import ScanResultErrorPage from './pages/scanResultErrorPage';
 import ShareData from './pages/shareData';
 import TakePhoto from './pages/take-photo';
@@ -24,6 +25,7 @@ const App = () => {
           <Route path={routesPaths.shareData} element={<ShareData />} />
 
           <Route path={routesPaths.takePhoto} element={<TakePhoto />} />
+          <Route path={routesPaths.phoneNumber} element={<PhoneNumber />} />
           <Route path={routesPaths.documentFields} element={<DocumentFields />} />
           <Route path={routesPaths.documentScan} element={<DocumentScan />} />
           <Route path={routesPaths.incorrectData} element={<IncorrectDataErrorPage />} />
