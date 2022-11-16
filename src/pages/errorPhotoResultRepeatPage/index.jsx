@@ -7,7 +7,14 @@ const ErrorPhotoResultRepeatPage = () => {
 
   const textErrorTwo = 'Пожалуйста, обратитесь в Бюро пропусков';
 
-  return <ErrorPage title="Ошибка" textOne={textErrorOne} textTwo={textErrorTwo} />;
+  return (
+    <ErrorPage
+      title="Ошибка"
+      textOne={textErrorOne}
+      textTwo={textErrorTwo}
+      isRepeatButtonVisible
+    />
+  );
 };
 
 export default ErrorPhotoResultRepeatPage;

@@ -53,9 +53,7 @@ const DocumentFields = () => {
 
   const fullYear = year > currentYear ? `19${year}` : `20${year}`;
 
-  const photo = App.useState(s => s.app.documentVisitorData);
-
-  console.log(photo?.Image?.image);
+  const photo = App.useState(s => s.app.documentVisitorData?.Image?.image);
 
   return (
     <div className={s.documentFields}>

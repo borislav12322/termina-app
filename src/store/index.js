@@ -5,5 +5,6 @@ export const App = new Store({
     isLoading: false,
     isModalVisible: false,
     documentVisitorData: null,
+    terminalVisitorPhoto: null,
   },
 });
