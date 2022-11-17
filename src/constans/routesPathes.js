@@ -1,5 +1,3 @@
-import DocumentFields from '../pages/documentsFields';
-
 export const routesPaths = {
   login: '/',
   shareData: '/share-data',
@@ -11,4 +9,6 @@ export const routesPaths = {
   scanError: '/scan-error',
   documentFields: '/document-fields',
   phoneNumber: '/phone',
+  phoneError: '/phone-error',
+  passSuccess: '/pass-success',
 };

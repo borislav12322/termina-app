@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import Button from '../../components/button';
 import Input from '../../components/input';
 import Keyboard from '../../components/keyboard';
+import { routesPaths } from '../../constans/routesPathes';
 import { phone } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './phoneNumber.module.css';
 
 const PhoneNumber = () => {
-  const [inputValues, setInputValues] = useState('');
+  const navigate = useNavigate();
 
-  console.log(inputValues);
+  const [inputValues, setInputValues] = useState('');
 
   const onChange = e => {
     const { value, name } = e.currentTarget;
@@ -27,9 +30,23 @@ const PhoneNumber = () => {
     try {
       const passData = await phone.search(inputValues);
 
-      console.log(passData);
+      if (passData.length > 0) {
+        App.update(s => {
+          s.app.currentVisitorPassportID = passData[0].visitor_id;
+        });
+
+        navigate(routesPaths.documentScan);
+
+        return;
+      }
+
+      if (passData.length === 0) {
+        navigate(routesPaths.phoneError);
+
+        return;
+      }
     } catch (e) {
-      console.log(e);
+      navigate(routesPaths.phoneError);
     }
   };
 

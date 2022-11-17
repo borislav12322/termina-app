@@ -8,5 +8,6 @@ export const App = new Store({
     terminalVisitorPhoto: null,
     isKeyboardVisible: false,
     error: '',
+    currentVisitorPassportID: null,
   },
 });

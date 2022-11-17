@@ -21,8 +21,10 @@ const TakePhoto = () => {
     e.preventDefault();
     face
       .compare(`data:image/jpeg;base64,${regulaPhoto}`, terminalPhoto)
-      .then((res, rej) => {
-        console.log(res.data);
+      .then(res => {
+        if (res.data.result === true) {
+          navigate(routesPaths.passSuccess);
+        }
       })
       .catch(e => {
         navigate(routesPaths.repeatErrorPhotoResult);

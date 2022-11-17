@@ -15,7 +15,7 @@ const Input = ({ name, title, value, onChange, maxSymbols, type, onFocus }) => {
         id={name}
         name={name}
         type={type || 'text'}
-        maxLength={11}
+        maxLength={15}
         onFocus={onFocus}
       />
     </label>

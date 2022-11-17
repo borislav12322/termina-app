@@ -17,7 +17,7 @@ export const regula = {
 
 const faceAxiosInstance = axios.create({
   withCredentials: false,
-  baseURL: 'http://192.168.4.110:8000/api/v1/face/',
+  baseURL: 'http://192.168.4.113:8000/api/v1/face/',
 });
 
 export const face = {
@@ -31,6 +31,11 @@ export const face = {
 export const phone = {
   search: phone =>
     axiosInstance
-      .get(`http://192.168.4.110:8000/api/v1/search/pass?phone=${phone}`)
+      .get(`http://192.168.4.113:8000/api/v1/search/pass?phone=${phone}`)
       .then(res => res.data),
+};
+
+export const passport = {
+  add: (data, id) =>
+    axiosInstance.post(`http://192.168.4.113:8000/api/v1/visitor/${id}/passport`, data),
 };

@@ -8,6 +8,8 @@ import ErrorPhotoResultPage from './pages/errorPhotoResultPage';
 import ErrorPhotoResultRepeatPage from './pages/errorPhotoResultRepeatPage';
 import IncorrectDataErrorPage from './pages/incorrectDataErrorPage';
 import Login from './pages/login';
+import PassSuccess from './pages/passSuccess';
+import PhoneError from './pages/phoneError';
 import PhoneNumber from './pages/phoneNumber';
 import ScanResultErrorPage from './pages/scanResultErrorPage';
 import ShareData from './pages/shareData';
@@ -25,12 +27,14 @@ const App = () => {
           <Route path={routesPaths.shareData} element={<ShareData />} />
 
           <Route path={routesPaths.takePhoto} element={<TakePhoto />} />
+          <Route path={routesPaths.phoneError} element={<PhoneError />} />
           <Route path={routesPaths.phoneNumber} element={<PhoneNumber />} />
           <Route path={routesPaths.documentFields} element={<DocumentFields />} />
           <Route path={routesPaths.documentScan} element={<DocumentScan />} />
           <Route path={routesPaths.incorrectData} element={<IncorrectDataErrorPage />} />
           <Route path={routesPaths.errorPhotoResult} element={<ErrorPhotoResultPage />} />
           <Route path={routesPaths.scanError} element={<ScanResultErrorPage />} />
+          <Route path={routesPaths.passSuccess} element={<PassSuccess />} />
           <Route
             path={routesPaths.repeatErrorPhotoResult}
             element={<ErrorPhotoResultRepeatPage />}
