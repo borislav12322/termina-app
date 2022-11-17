@@ -39,6 +39,8 @@
         "camelcase": "off",
         "import/no-cycle": "off",
         "react/button-has-type": "off",
+        "import/no-dynamic-require": "off",
+        "global-require": "off",
         "import/order": [
             "error",
             {
@@ -116,5 +118,16 @@
                 ]
             }
         }
+    },
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly",
+        "__electronDir": "readonly",
+        "__reactBuildDir": "readonly",
+        "__rootDir": "readonly",
+        "__auxiliaryDir": "readonly",
+        "__staticDir": "readonly",
+        "__assetsDir": "readonly",
+        "__configDir": "readonly"
     }
 }

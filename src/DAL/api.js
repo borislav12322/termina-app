@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
   withCredentials: false,
-  baseURL: 'http://localhost:8081/',
+  baseURL: `http://localhost:${process.env.DEVELOP ? '8081' : '8080'}/`,
 });
 
 export const regula = {

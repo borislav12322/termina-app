@@ -15,7 +15,9 @@ const DocumentScan = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const serverEvent = new EventSource(`http://localhost:8081/stream`);
+    const serverEvent = new EventSource(
+      `http://localhost:${process.env.DEVELOP ? '8081' : '8080'}/stream`,
+    );
 
     serverEvent.addEventListener('DocumentReady', e => {
       if (e.data.match('true')) {

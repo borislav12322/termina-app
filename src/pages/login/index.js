@@ -11,6 +11,8 @@ import s from './login.module.css';
 const Login = () => {
   const navigate = useNavigate();
 
+  console.log(process.env.DEVELOP);
+
   const onButtonClickHandle = e => {
     e.preventDefault();
     navigate(routesPaths.shareData);

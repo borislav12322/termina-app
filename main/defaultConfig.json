@@ -1,0 +1,26 @@
+{
+  "port": 48181,
+  "windows": [
+    {
+      "url": "http://localhost:3031",
+      "display": 0,
+      "type": "main",
+      "kiosk": true,
+      "alwaysOnTop": true,
+      "zoomFactor": 1,
+      "frame": false,
+      "devTools": false,
+      "restartTime": 5000
+    }
+  ],
+  "develop": false,
+  "virtualKeyboard": {
+    "screens": true,
+    "webview": false
+  },
+  "source": "dev-source",
+  "reactPort": 3031,
+  "queueId": 2,
+  "zoneId": 1,
+  "satelliteId": 1
+}
