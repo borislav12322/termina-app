@@ -58,7 +58,8 @@ const TakePhoto = () => {
             return;
           }
         } catch (e) {
-          navigate(routesPaths.cardTakeAway);
+          // navigate(routesPaths.cardTakeAway);
+          console.log('err took back');
         }
       }
     } catch (e) {

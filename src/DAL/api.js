@@ -40,10 +40,10 @@ export const passport = {
 };
 
 export const pass = {
-  card: () => mainAxiosInstance.post(`http://192.168.4.113:8080/card`),
+  card: () => mainAxiosInstance.post(`http://localhost:8082/card`),
 
   rfid: (id, rfid) =>
-    mainAxiosInstance.patch(`pass/${id}`, {
+    mainAxiosInstance.patch(`pass/${id}/rfid`, {
       rfid,
     }),
 };
