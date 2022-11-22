@@ -1,0 +1,51 @@
+.foundFace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.boxContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.videoBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 30px;
+}
+
+.videoInner {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.counter {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  font-family: Ubuntu, sans-serif;
+  font-size: 100px;
+  color: #d63e2f;
+}
+
+.visitorImage {
+  width: 888px;
+  height: 686px;
+}
+
+.foundFace button {
+  width: 100%;
+}

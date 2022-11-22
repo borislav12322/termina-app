@@ -14,9 +14,16 @@ const DocumentScan = () => {
 
   const navigate = useNavigate();
 
+  console.log(App.useState(s => s.app.currentVisitorPassID));
+
   useEffect(() => {
     const serverEvent = new EventSource(
-      `http://localhost:${process.env.DEVELOP ? '8081' : '8080'}/stream`,
+      `http://localhost:${
+        process.env.NODE_ENV === 'development' ? '8081' : '8080'
+      }/stream`,
+      {
+        withCredentials: false,
+      },
     );
 
     serverEvent.addEventListener('DocumentReady', e => {

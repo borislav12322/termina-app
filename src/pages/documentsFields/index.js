@@ -19,9 +19,6 @@ const DocumentFields = () => {
 
   const currentVisitorPassportID = App.useState(s => s.app.currentVisitorPassportID);
 
-  console.log(currentVisitorPassportID);
-  console.log(currentVisitorData);
-
   const navigate = useNavigate();
 
   const onButtonInCorrectHandle = e => {

@@ -9,5 +9,7 @@ export const App = new Store({
     isKeyboardVisible: false,
     error: '',
     currentVisitorPassportID: null,
+    currentVisitorPassID: null,
+    foundFacePassPhoto: null,
   },
 });

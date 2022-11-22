@@ -1,0 +1,22 @@
+.searchChosen{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.title{
+    align-self: center;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    row-gap: 80px;
+    width: 100%;
+}
+
+.buttonsBox{
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
+}

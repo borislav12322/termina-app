@@ -33,7 +33,10 @@ const PhoneNumber = () => {
       if (passData.length > 0) {
         App.update(s => {
           s.app.currentVisitorPassportID = passData[0].visitor_id;
+          s.app.currentVisitorPassID = passData[0].id;
         });
+
+        console.log(passData[0]?.id);
 
         navigate(routesPaths.documentScan);
 
@@ -50,8 +53,20 @@ const PhoneNumber = () => {
     }
   };
 
+  const backButtonHandle = e => {
+    e.preventDefault();
+    navigate(routesPaths.searchChosen);
+  };
+
   return (
     <div className={s.phoneNumber}>
+      <Button
+        text="Назад"
+        type="button"
+        paddingLeftRight="36px"
+        onClick={backButtonHandle}
+        id="button_prev"
+      />
       <div className={s.wrapper}>
         <Input
           title="Номер телефона"

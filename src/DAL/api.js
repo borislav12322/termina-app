@@ -2,7 +2,9 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
   withCredentials: false,
-  baseURL: `http://localhost:${process.env.DEVELOP ? '8081' : '8080'}/`,
+  baseURL: `http://localhost:${
+    process.env.NODE_ENV === 'development' ? '8081' : '8080'
+  }/`,
 });
 
 export const regula = {
@@ -15,14 +17,14 @@ export const regula = {
   scanDocument: () => axiosInstance.get(`scan`),
 };
 
-const faceAxiosInstance = axios.create({
+const mainAxiosInstance = axios.create({
   withCredentials: false,
-  baseURL: 'http://192.168.4.113:8000/api/v1/face/',
+  baseURL: `http://192.168.4.113:8000/api/v1/`,
 });
 
 export const face = {
   compare: (face_one, face_two) =>
-    faceAxiosInstance.post('compare', {
+    mainAxiosInstance.post('face/compare', {
       face_one,
       face_two,
     }),
@@ -30,12 +32,22 @@ export const face = {
 
 export const phone = {
   search: phone =>
-    axiosInstance
-      .get(`http://192.168.4.113:8000/api/v1/search/pass?phone=${phone}`)
-      .then(res => res.data),
+    mainAxiosInstance.get(`search/pass?phone=${phone}`).then(res => res.data),
 };
 
 export const passport = {
-  add: (data, id) =>
-    axiosInstance.post(`http://192.168.4.113:8000/api/v1/visitor/${id}/passport`, data),
+  add: (data, id) => mainAxiosInstance.post(`visitor/${id}/passport`, data),
+};
+
+export const pass = {
+  card: () => mainAxiosInstance.post(`http://192.168.4.113:8080/card`),
+
+  rfid: (id, rfid) =>
+    mainAxiosInstance.patch(`pass/${id}`, {
+      rfid,
+    }),
+};
+
+export const photoPass = {
+  find: data => mainAxiosInstance.post(`pass/face/coincidence`, data),
 };

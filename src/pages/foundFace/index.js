@@ -5,64 +5,24 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button';
 import Text from '../../components/text';
 import Title from '../../components/title';
-import { routesPaths } from '../../constans/routesPathes';
-import { face, pass } from '../../DAL/api';
+import { photoPass } from '../../DAL/api';
 import { App } from '../../store';
 
-import s from './take-photo.module.css';
+import s from './foundFace.module.css';
 
-const TakePhoto = () => {
+const FoundFace = () => {
   const navigate = useNavigate();
 
-  const regulaPhoto = App.useState(s => s?.app?.documentVisitorData?.Image?.image);
-  const terminalPhoto = App.useState(s => s?.app?.terminalVisitorPhoto);
-  const currentVisitorPassID = App.useState(s => s?.app?.currentVisitorPassID);
+  const foundFacePassPhoto = App.useState(s => s?.app?.foundFacePassPhoto);
 
   const buttonHandle = async e => {
     e.preventDefault();
-    face
-      .compare(`data:image/jpeg;base64,${regulaPhoto}`, terminalPhoto)
-      .then(res => {
-        if (res.data.result === true) {
-          navigate(routesPaths.passSuccess);
-        }
-      })
-      .catch(e => {
-        navigate(routesPaths.repeatErrorPhotoResult);
-      });
-    // navigate('');
-  };
-
-  const buttonHandler = async e => {
     try {
-      const faceCompareResponse = await face.compare(
-        `data:image/jpeg;base64,${regulaPhoto}`,
-        terminalPhoto,
-      );
+      const findedPass = await photoPass.find({ face_file: foundFacePassPhoto });
 
-      if (faceCompareResponse.data.result === true) {
-        try {
-          const passInfo = await pass.card();
-
-          if (passInfo?.data.status === 'gived') {
-            await pass.rfid(currentVisitorPassID, passInfo.data.rfid);
-            await navigate(routesPaths.passSuccess);
-
-            return;
-          }
-
-          if (passInfo.data.status === 'took back') {
-            console.log('err');
-            await navigate(routesPaths.cardTakeAway);
-
-            return;
-          }
-        } catch (e) {
-          navigate(routesPaths.cardTakeAway);
-        }
-      }
+      console.log(findedPass);
     } catch (e) {
-      navigate(routesPaths.repeatErrorPhotoResult);
+      console.log(e);
     }
   };
 
@@ -135,7 +95,7 @@ const TakePhoto = () => {
     setPhoto(data);
 
     App.update(s => {
-      s.app.terminalVisitorPhoto = data;
+      s.app.foundFacePassPhoto = data;
     });
 
     link.href = data;
@@ -171,12 +131,11 @@ const TakePhoto = () => {
   }, [isPhotoActive]);
 
   return (
-    <div className={s.takePhoto}>
+    <div className={s.foundFace}>
       <div className={s.wrapper}>
-        <Title text="Требуется сделать фото" />
+        <Title text="Требуется сделать фото для поиска пропуска" />
         <div className={s.boxContent}>
           <div className={s.textInner}>
-            <Text text="Проход осуществляется по двухфакторной аутентификации" />
             <Text text="Встаньте в зону распознавания камеры" />
           </div>
           <div className={s.videoBox}>
@@ -218,25 +177,19 @@ const TakePhoto = () => {
                 onClick={() => {
                   setPhoto('');
                   App.update(s => {
-                    s.app.terminalVisitorPhoto = '';
+                    s.app.foundFacePassPhoto = '';
                   });
                 }}
                 buttonWhite
               />
             )}
+
+            {foundFacePassPhoto && <Button text="Отправить" onClick={buttonHandle} />}
           </div>
         </div>
       </div>
-
-      <Button
-        text="Далее"
-        type="button"
-        paddingLeftRight="36px"
-        onClick={buttonHandler}
-        id="button_next"
-      />
     </div>
   );
 };
 
-export default TakePhoto;
+export default FoundFace;

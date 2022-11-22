@@ -6,7 +6,7 @@
       "display": 0,
       "type": "main",
       "kiosk": true,
-      "alwaysOnTop": true,
+      "alwaysOnTop": false,
       "zoomFactor": 1,
       "frame": false,
       "devTools": false,

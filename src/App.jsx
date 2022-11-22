@@ -2,20 +2,25 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import Wrapper from './components/wrapper';
 import { routesPaths } from './constans/routesPathes';
+import CardTookAway from './pages/cardTookAway';
 import DocumentScan from './pages/documentScan';
 import DocumentFields from './pages/documentsFields';
 import ErrorPhotoResultPage from './pages/errorPhotoResultPage';
 import ErrorPhotoResultRepeatPage from './pages/errorPhotoResultRepeatPage';
+import FoundFace from './pages/foundFace';
 import IncorrectDataErrorPage from './pages/incorrectDataErrorPage';
 import Login from './pages/login';
 import PassSuccess from './pages/passSuccess';
 import PhoneError from './pages/phoneError';
 import PhoneNumber from './pages/phoneNumber';
 import ScanResultErrorPage from './pages/scanResultErrorPage';
+import SearchChosen from './pages/searchChosen';
 import ShareData from './pages/shareData';
 import TakePhoto from './pages/take-photo';
 
 const App = () => {
+  console.log(process.env.NODE_ENV);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -27,6 +32,9 @@ const App = () => {
           <Route path={routesPaths.shareData} element={<ShareData />} />
 
           <Route path={routesPaths.takePhoto} element={<TakePhoto />} />
+          <Route path={routesPaths.cardTakeAway} element={<CardTookAway />} />
+          <Route path={routesPaths.foundFace} element={<FoundFace />} />
+          <Route path={routesPaths.searchChosen} element={<SearchChosen />} />
           <Route path={routesPaths.phoneError} element={<PhoneError />} />
           <Route path={routesPaths.phoneNumber} element={<PhoneNumber />} />
           <Route path={routesPaths.documentFields} element={<DocumentFields />} />
