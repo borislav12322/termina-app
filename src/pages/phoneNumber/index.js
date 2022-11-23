@@ -34,6 +34,7 @@ const PhoneNumber = () => {
         App.update(s => {
           s.app.currentVisitorPassportID = passData[0].visitor_id;
           s.app.currentVisitorPassID = passData[0].id;
+          s.app.currentVisitorID = passData[0].visitor_id;
         });
 
         console.log(passData[0]?.id);

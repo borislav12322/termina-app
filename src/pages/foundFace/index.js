@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button';
 import Text from '../../components/text';
 import Title from '../../components/title';
-import { photoPass } from '../../DAL/api';
+import { routesPaths } from '../../constans/routesPathes';
+import { dispenser, pass, photoPass } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './foundFace.module.css';
@@ -15,14 +16,50 @@ const FoundFace = () => {
 
   const foundFacePassPhoto = App.useState(s => s?.app?.foundFacePassPhoto);
 
+  const terminalPhoto = App.useState(s => s?.app?.terminalVisitorPhoto);
+
   const buttonHandle = async e => {
     e.preventDefault();
     try {
       const findedPass = await photoPass.find({ face_file: foundFacePassPhoto });
 
-      console.log(findedPass);
+      if (findedPass) {
+        try {
+          navigate(routesPaths.passSuccess);
+
+          const passInfo = await dispenser.card();
+
+          await App.update(s => {
+            s.app.dispenserInfo = passInfo;
+          });
+
+          if (passInfo?.data.status === 'empty bin') {
+            await navigate(routesPaths.emptyBin);
+            console.log('emptyBin');
+
+            return;
+          }
+
+          if (passInfo?.data.status === 'gived') {
+            await pass.rfid(findedPass.data.visitor_id, passInfo.data.rfid);
+
+            return;
+          }
+
+          if (passInfo.data.status === 'took back') {
+            await navigate(routesPaths.cardTakeAway);
+            console.log('took back');
+
+            return;
+          }
+        } catch (e) {
+          navigate(routesPaths.cardTakeAway);
+          console.log(e);
+        }
+      }
     } catch (e) {
       console.log(e);
+      navigate(routesPaths.passNotFound);
     }
   };
 

@@ -2,20 +2,20 @@ import React, { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import PassSuccessImage from '../../assets/images/pass-success.png';
-import Title from '../../components/title';
+import ErrorPage from '../../components/errorPage';
 import { routesPaths } from '../../constans/routesPathes';
 import { App } from '../../store';
 
-import s from './cardTookAway.module.css';
+const EmptyBin = () => {
+  const textError = 'Корзина с карточками пустая';
+  const textErrorTwo = 'Пожалуйста, обратитесь в бюро пропусков';
 
-const CardTookAway = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const intervalReturn = setInterval(() => {
       navigate(routesPaths.login);
-    }, 10000);
+    }, 25000);
 
     return () => clearInterval(intervalReturn);
   }, []);
@@ -32,18 +32,7 @@ const CardTookAway = () => {
     });
   }, []);
 
-  return (
-    <div className={s.cardTookAway}>
-      <Title text="Пропуск не забран" />
-
-      <div className={`${s.wrapper} wrapperShadow`}>
-        <p className="commonText">
-          Вы будете перенаправлены <br /> на главную страницу
-        </p>
-        <img className={s.image} src={PassSuccessImage} alt="успешно выдан" />
-      </div>
-    </div>
-  );
+  return <ErrorPage title="Ошибка" textOne={textError} textTwo={textErrorTwo} />;
 };
 
-export default CardTookAway;
+export default EmptyBin;

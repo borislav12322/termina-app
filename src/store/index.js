@@ -10,6 +10,8 @@ export const App = new Store({
     error: '',
     currentVisitorPassportID: null,
     currentVisitorPassID: null,
+    currentVisitorID: null,
     foundFacePassPhoto: null,
+    dispenserInfo: null,
   },
 });

@@ -14,4 +14,7 @@ export const routesPaths = {
   searchChosen: '/search-chosen',
   foundFace: '/found-face',
   cardTakeAway: '/take-away',
+  emptyPassport: '/empty-passport',
+  emptyBin: '/empty-bin',
+  passNotFound: '/pass-not',
 };

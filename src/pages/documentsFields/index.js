@@ -68,8 +68,11 @@ const DocumentFields = () => {
       navigate(routesPaths.takePhoto);
     } catch (e) {
       console.error(e);
+      navigate(routesPaths.emptyPassport);
     }
   };
+
+  console.log(visitorInfo);
 
   return (
     <div className={s.documentFields}>
@@ -79,7 +82,10 @@ const DocumentFields = () => {
           <TextField title="Фамилия" text={visitorInfo?.[22]?.Buf_Text} />
           <TextField title="Имя" text={visitorInfo?.[23]?.Buf_Text} />
           <TextField title="Отчество" text={visitorInfo?.[24]?.Buf_Text} />
-          <TextField title="Дата рождения" text={`${day}.${month}.${fullYear}`} />
+          <TextField
+            title="Дата рождения"
+            text={`${day || ''}.${month || ''}.${fullYear || ''}`}
+          />
           <TextField title="Серия и номер документа" text={visitorInfo?.[5]?.Buf_Text} />
         </div>
         <div className={s.currentBox}>

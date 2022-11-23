@@ -6,7 +6,7 @@ import Button from '../../components/button';
 import Text from '../../components/text';
 import Title from '../../components/title';
 import { routesPaths } from '../../constans/routesPathes';
-import { face, pass } from '../../DAL/api';
+import { dispenser, face, pass } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './take-photo.module.css';
@@ -18,48 +18,50 @@ const TakePhoto = () => {
   const terminalPhoto = App.useState(s => s?.app?.terminalVisitorPhoto);
   const currentVisitorPassID = App.useState(s => s?.app?.currentVisitorPassID);
 
-  const buttonHandle = async e => {
-    e.preventDefault();
-    face
-      .compare(`data:image/jpeg;base64,${regulaPhoto}`, terminalPhoto)
-      .then(res => {
-        if (res.data.result === true) {
-          navigate(routesPaths.passSuccess);
-        }
-      })
-      .catch(e => {
-        navigate(routesPaths.repeatErrorPhotoResult);
-      });
-    // navigate('');
-  };
-
   const buttonHandler = async e => {
     try {
       const faceCompareResponse = await face.compare(
-        `data:image/jpeg;base64,${regulaPhoto}`,
         terminalPhoto,
+        `data:image/jpeg;base64,${regulaPhoto}`,
+        currentVisitorPassID,
       );
 
       if (faceCompareResponse.data.result === true) {
         try {
-          const passInfo = await pass.card();
+          navigate(routesPaths.passSuccess);
+
+          const passInfo = await dispenser.card();
+
+          await App.update(s => {
+            s.app.dispenserInfo = passInfo;
+          });
+
+          if (passInfo?.data.status === 'empty bin') {
+            await navigate(routesPaths.emptyBin);
+            console.log('emptyBin');
+
+            return;
+          }
 
           if (passInfo?.data.status === 'gived') {
             await pass.rfid(currentVisitorPassID, passInfo.data.rfid);
-            await navigate(routesPaths.passSuccess);
 
             return;
           }
 
           if (passInfo.data.status === 'took back') {
-            console.log('err');
             await navigate(routesPaths.cardTakeAway);
+            console.log('took back');
 
             return;
           }
         } catch (e) {
-          // navigate(routesPaths.cardTakeAway);
+          navigate(routesPaths.cardTakeAway);
           console.log('err took back');
+        } finally {
+          App.update(s => {
+            s.app.isLoading = false;
+          });
         }
       }
     } catch (e) {

@@ -23,10 +23,11 @@ const mainAxiosInstance = axios.create({
 });
 
 export const face = {
-  compare: (face_one, face_two) =>
+  compare: (face_one, face_two, visitor_id) =>
     mainAxiosInstance.post('face/compare', {
       face_one,
       face_two,
+      visitor_id,
     }),
 };
 
@@ -40,7 +41,7 @@ export const passport = {
 };
 
 export const pass = {
-  card: () => mainAxiosInstance.post(`http://localhost:8082/card`),
+  // card: () => mainAxiosInstance.post(`http://localhost:8082/card`),
 
   rfid: (id, rfid) =>
     mainAxiosInstance.patch(`pass/${id}/rfid`, {
@@ -50,4 +51,13 @@ export const pass = {
 
 export const photoPass = {
   find: data => mainAxiosInstance.post(`pass/face/coincidence`, data),
+};
+
+const dispenserInstance = axios.create({
+  withCredentials: false,
+  baseURL: `http://localhost:8082/`,
+});
+
+export const dispenser = {
+  card: () => dispenserInstance.post(`card`),
 };
