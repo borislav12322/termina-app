@@ -2,15 +2,29 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { App } from '../../store';
 import Button from '../button';
 
 import s from './errorPage.module.css';
 
-const ErrorPage = ({ title, textOne, isRepeatButtonVisible, textTwo, errorPagePath }) => {
+const ErrorPage = ({
+  title,
+  textOne,
+  isRepeatButtonVisible,
+  textTwo,
+  errorPagePath,
+  onClick,
+}) => {
   const navigate = useNavigate();
 
   const onClickHandle = e => {
     e.preventDefault();
+
+    App.update(s => {
+      s.app.foundFacePassPhoto = null;
+      s.app.terminalVisitorPhoto = null;
+    });
+
     if (errorPagePath) {
       navigate(errorPagePath);
     }

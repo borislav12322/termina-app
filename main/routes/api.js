@@ -1,22 +1,19 @@
-const express = require('express');
 const fs = require('fs');
-const path = require('path');
 const os = require('os');
+const path = require('path');
 
-const {
-  version,
-} = require('../../package.json');
+const express = require('express');
 
-const {
-  store,
-} = require('../utils/store');
-const setWindowParams = require('../utils/setWindowParams');
+const { version } = require('../../package.json');
+const abtPayment = require('../utils/abtPayment');
+const logger = require('../utils/logger');
 const printBrowser = require('../utils/printBrowser');
 const printLinux = require('../utils/printLinux');
-const logger = require('../utils/logger');
-const paymentProcessing = require('./paymentProcessing');
-const abtPayment = require('../utils/abtPayment');
+const setWindowParams = require('../utils/setWindowParams');
+const { store } = require('../utils/store');
+
 const initPayment = require('./initPayment');
+const paymentProcessing = require('./paymentProcessing');
 
 const router = express.Router();
 
@@ -29,6 +26,7 @@ router.get('/version', (req, res) => {
 
 router.get('/config', (req, res) => {
   const config = store.get('config');
+
   if (config) {
     res.json(config);
   } else {
@@ -40,21 +38,20 @@ router.get('/config', (req, res) => {
 
 router.post('/print', (req, res, next) => {
   const appConfig = store.get('config');
-  const {
-    printerName,
-  } = appConfig;
-  const {
-    data,
-  } = req.body;
+  const { printerName } = appConfig;
+  const { data } = req.body;
   const imagePath = path.join(os.tmpdir(), 'lastPrintedImage.png');
   const imgBuffer = Buffer.from(data, 'base64');
-  fs.writeFileSync(imagePath, imgBuffer, 'binary', (err) => {
+
+  fs.writeFileSync(imagePath, imgBuffer, 'binary', err => {
     logger.error('Error save image file', err); // writes out file without error, but it's not a valid image
   });
   const platform = os.platform();
+
   try {
     if (platform === 'linux') {
       const printOptions = {};
+
       if (printerName) {
         printOptions.printer = printerName;
       }
@@ -74,43 +71,6 @@ router.post('/print', (req, res, next) => {
   }
 });
 
-router.post('/scan', async (req, res) => {
-  const {
-    scanner,
-  } = global;
-  if (scanner) {
-    const data = await scanner.scanSync();
-    const imgBuffer = data.toString('base64');
-    res.json({
-      success: true,
-      data: imgBuffer,
-    });
-  } else {
-    res.json({
-      success: false,
-    });
-  }
-});
-
-router.get('/cardreader', (req, res) => {
-  const {
-    cardReader,
-  } = global;
-  if (cardReader.cardReaderState !== 'ERROR') {
-    const answer = {
-      success: true,
-      cardReaderState: cardReader.cardReaderState,
-      done: cardReader.done,
-      oms: cardReader.oms,
-    };
-    res.json(answer);
-  } else {
-    res.json({
-      success: false,
-    });
-  }
-});
-
 router.get('/tilesConfig', (req, res) => {
   try {
     // eslint-disable-next-line global-require
@@ -119,6 +79,7 @@ router.get('/tilesConfig', (req, res) => {
       success: true,
       tiles,
     };
+
     res.json(answer);
   } catch (e) {
     res.json({

@@ -26,7 +26,7 @@ const SearchChosen = () => {
         <h2 className={`${s.title} commonTitle`}>Поиск пропуска</h2>
         <div className={s.buttonsBox}>
           <Button text="По номеру телефона" onClick={phoneButtonHandle} />
-          <Button text="По лицу" onClick={faceButtonHandle} />
+          <Button text="По лицу при повторном посещении" onClick={faceButtonHandle} />
         </div>
       </div>
     </div>

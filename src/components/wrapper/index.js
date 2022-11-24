@@ -12,6 +12,10 @@ import s from './wrapper.module.css';
 const Wrapper = () => {
   const isLoading = App.useState(s => s.app.isLoading);
 
+  const foundFacePassPhoto = App.useState(s => s.app.foundFacePassPhoto);
+
+  console.log(foundFacePassPhoto);
+
   return (
     <div className={s.wrapper}>
       <Header />

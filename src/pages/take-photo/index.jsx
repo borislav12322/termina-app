@@ -19,6 +19,8 @@ const TakePhoto = () => {
   const currentVisitorPassID = App.useState(s => s?.app?.currentVisitorPassID);
 
   const buttonHandler = async e => {
+    e.preventDefault();
+
     try {
       const faceCompareResponse = await face.compare(
         terminalPhoto,
@@ -38,7 +40,6 @@ const TakePhoto = () => {
 
           if (passInfo?.data.status === 'empty bin') {
             await navigate(routesPaths.emptyBin);
-            console.log('emptyBin');
 
             return;
           }
@@ -51,18 +52,22 @@ const TakePhoto = () => {
 
           if (passInfo.data.status === 'took back') {
             await navigate(routesPaths.cardTakeAway);
-            console.log('took back');
 
             return;
           }
         } catch (e) {
           navigate(routesPaths.cardTakeAway);
-          console.log('err took back');
         } finally {
           App.update(s => {
             s.app.isLoading = false;
           });
         }
+      }
+
+      if (faceCompareResponse.data.result === false) {
+        navigate(routesPaths.repeatErrorPhotoResult);
+
+        return;
       }
     } catch (e) {
       navigate(routesPaths.repeatErrorPhotoResult);

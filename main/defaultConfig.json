@@ -9,7 +9,7 @@
       "alwaysOnTop": false,
       "zoomFactor": 1,
       "frame": false,
-      "devTools": false,
+      "devTools": true,
       "restartTime": 5000
     }
   ],

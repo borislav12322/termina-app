@@ -23,7 +23,9 @@ const FoundFace = () => {
     try {
       const findedPass = await photoPass.find({ face_file: foundFacePassPhoto });
 
-      if (findedPass) {
+      console.log(findedPass);
+
+      if (findedPass.data) {
         try {
           navigate(routesPaths.passSuccess);
 
@@ -55,7 +57,17 @@ const FoundFace = () => {
         } catch (e) {
           navigate(routesPaths.cardTakeAway);
           console.log(e);
+        } finally {
+          App.update(s => {
+            s.app.foundFacePassPhoto = null;
+          });
         }
+      }
+
+      if (!findedPass.data) {
+        navigate(routesPaths.passNotFound);
+
+        console.log('found face not');
       }
     } catch (e) {
       console.log(e);
@@ -214,7 +226,7 @@ const FoundFace = () => {
                 onClick={() => {
                   setPhoto('');
                   App.update(s => {
-                    s.app.foundFacePassPhoto = '';
+                    s.app.foundFacePassPhoto = null;
                   });
                 }}
                 buttonWhite

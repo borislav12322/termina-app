@@ -2,6 +2,7 @@ import React from 'react';
 
 import ErrorPage from '../../components/errorPage';
 import { routesPaths } from '../../constans/routesPathes';
+import { App } from '../../store';
 
 import s from './passNotFound.module.css';
 
