@@ -6,7 +6,7 @@ import Button from '../../components/button';
 import Input from '../../components/input';
 import Keyboard from '../../components/keyboard';
 import { routesPaths } from '../../constans/routesPathes';
-import { phone } from '../../DAL/api';
+import { phone, searchPassByPhone } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './phoneNumber.module.css';
@@ -28,7 +28,7 @@ const PhoneNumber = () => {
     e.preventDefault();
 
     try {
-      const passData = await phone.search(inputValues);
+      const passData = await searchPassByPhone(inputValues);
 
       if (passData.length > 0) {
         App.update(s => {
@@ -83,9 +83,10 @@ const PhoneNumber = () => {
           }}
         />
 
-        <Button text="Отправить" onClick={sendNumber} />
+        {/* <Button text="Отправить" onClick={sendNumber} /> */}
       </div>
-      {isKeyboardVisible && <Keyboard setValue={setInputValues} />}
+      {/* {isKeyboardVisible && <Keyboard setValue={setInputValues} />} */}
+      <Keyboard setValue={setInputValues} sendNumber={sendNumber} />
     </div>
   );
 };

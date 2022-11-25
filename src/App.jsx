@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import Wrapper from './components/wrapper';
@@ -20,8 +22,45 @@ import ScanResultErrorPage from './pages/scanResultErrorPage';
 import SearchChosen from './pages/searchChosen';
 import ShareData from './pages/shareData';
 import TakePhoto from './pages/take-photo';
+import { App as StorePS } from './store';
+import changeStateToDevelop from './utils/developValues';
 
 const App = () => {
+  const { appConfig } = StorePS.useState(s => ({
+    appConfig: s.app.appConfig,
+  }));
+
+  const [isConfigMounted, setConfigMounted] = useState(false);
+
+  useEffect(() => {
+    try {
+      const config = window.api.getConfig();
+
+      config.then(res => {
+        console.log(res);
+        StorePS.update(s => {
+          s.app.appConfig = res;
+          // if (res.develop) {
+          //   const developValues = changeStateToDevelop();
+          //
+          //   Object.entries(developValues).forEach(([key, value]) => {
+          //     const clone = JSON.parse(JSON.stringify(s[key]));
+          //
+          //     Object.assign(clone, value);
+          //     s[key] = clone;
+          //   });
+          // }
+        });
+        setConfigMounted(true);
+      });
+    } catch (e) {
+      console.error(e);
+      console.error('ОТКРЫВАЙ В ЭЛЕКТРОНЕ');
+    }
+  }, []);
+
+  console.log(appConfig);
+
   return (
     <BrowserRouter>
       <Routes>

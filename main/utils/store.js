@@ -1,4 +1,5 @@
 const Store = require('electron-store');
+
 const logger = require('./logger');
 const requireUserConfig = require('./requireUserConfig');
 

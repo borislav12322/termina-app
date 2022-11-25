@@ -4,7 +4,7 @@ import { App } from '../../store';
 
 import s from './keyboard.module.css';
 
-const Keyboard = ({ setValue }) => {
+const Keyboard = ({ setValue, sendNumber }) => {
   const numberArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const onClickHandle = (e, value) => {
@@ -27,18 +27,18 @@ const Keyboard = ({ setValue }) => {
   return (
     <div className={s.keyboard}>
       <div className={s.wrapper}>
-        <button
-          className={s.button}
-          style={{ height: '200px' }}
-          onClick={e => {
-            e.preventDefault();
-            App.update(s => {
-              s.app.isKeyboardVisible = false;
-            });
-          }}
-        >
-          Закрыть
-        </button>
+        {/* <button */}
+        {/*  className={s.button} */}
+        {/*  style={{ height: '200px' }} */}
+        {/*  onClick={e => { */}
+        {/*    e.preventDefault(); */}
+        {/*    App.update(s => { */}
+        {/*      s.app.isKeyboardVisible = false; */}
+        {/*    }); */}
+        {/*  }} */}
+        {/* > */}
+        {/*  Закрыть */}
+        {/* </button> */}
         <div className={s.inner}>
           {numberArray.map(el => (
             <button
@@ -56,8 +56,8 @@ const Keyboard = ({ setValue }) => {
           <button className={s.button} onClick={e => onClickHandle(e, 0)}>
             0
           </button>
-          <button className={s.button} onClick={deleteButton}>
-            Удалить
+          <button className={`${s.button} ${s.send}`} onClick={sendNumber}>
+            Отправить
           </button>
         </div>
       </div>

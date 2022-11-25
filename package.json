@@ -41,7 +41,7 @@
     "electron:build": "electron-builder --x64",
     "electron:build:windows": "electron-builder --win --x64",
     "electron:debug": "cross-env DEBUG=true electron main/index.js",
-    "electron:dev": "cross-env DEVELOP=true MAIN_SERVER=http://192.168.4.113:8000/api/v1 REGULA_SERVER=http://localhost:8080 electron main/index.js",
+    "electron:dev": "cross-env DEVELOP=true electron main/index.js",
     "react": "cross-env BROWSER=NONE PUBLIC_URL=./ react-scripts start",
     "react:build": "cross-env PUBLIC_URL=./ react-scripts build",
     "react:dev": "cross-env BROWSER=NONE REACT_APP_DEVELOP=1 PUBLIC_URL=./ react-scripts start",

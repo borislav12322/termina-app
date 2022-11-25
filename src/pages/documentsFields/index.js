@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button';
 import TextField from '../../components/textField';
 import { routesPaths } from '../../constans/routesPathes';
-import { passport } from '../../DAL/api';
+import { addPassport, passport } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './documentFields.module.css';
@@ -63,7 +63,7 @@ const DocumentFields = () => {
     e.preventDefault();
 
     try {
-      const passportData = await passport.add(passportPayload, currentVisitorPassportID);
+      const passportData = await addPassport(passportPayload, currentVisitorPassportID);
 
       navigate(routesPaths.takePhoto);
     } catch (e) {

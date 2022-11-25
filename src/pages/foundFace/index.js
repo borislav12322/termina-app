@@ -6,7 +6,7 @@ import Button from '../../components/button';
 import Text from '../../components/text';
 import Title from '../../components/title';
 import { routesPaths } from '../../constans/routesPathes';
-import { dispenser, pass, photoPass } from '../../DAL/api';
+import { dispenser, findPhotoByPass, linkRFID, pass, photoPass } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './foundFace.module.css';
@@ -21,9 +21,7 @@ const FoundFace = () => {
   const buttonHandle = async e => {
     e.preventDefault();
     try {
-      const findedPass = await photoPass.find({ face_file: foundFacePassPhoto });
-
-      console.log(findedPass);
+      const findedPass = await findPhotoByPass({ face_file: foundFacePassPhoto });
 
       if (findedPass.data) {
         try {
@@ -43,7 +41,7 @@ const FoundFace = () => {
           }
 
           if (passInfo?.data.status === 'gived') {
-            await pass.rfid(findedPass.data.visitor_id, passInfo.data.rfid);
+            await linkRFID(findedPass.data.visitor_id, passInfo.data.rfid);
 
             return;
           }

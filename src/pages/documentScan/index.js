@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import TerminalImage from '../../assets/images/scaning.png';
 import { routesPaths } from '../../constans/routesPathes';
-import { regula } from '../../DAL/api';
+import { getRegulaLastScan, regula } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './documentScan.module.css';
@@ -12,23 +12,22 @@ import s from './documentScan.module.css';
 const DocumentScan = () => {
   const [visitorData, setVisitorData] = useState(null);
 
+  const getAppConfig = () => {
+    return App.getRawState().app.appConfig;
+  };
+
+  const { regulaURL } = getAppConfig();
+
   const navigate = useNavigate();
 
-  console.log(App.useState(s => s.app.currentVisitorPassID));
-
   useEffect(() => {
-    const serverEvent = new EventSource(
-      `http://localhost:${
-        process.env.NODE_ENV === 'development' ? '8081' : '8080'
-      }/stream`,
-      {
-        withCredentials: false,
-      },
-    );
+    const serverEvent = new EventSource(`${regulaURL}stream`, {
+      withCredentials: false,
+    });
 
     serverEvent.addEventListener('DocumentReady', e => {
       if (e.data.match('true')) {
-        regula.lastScan().then(res => {
+        getRegulaLastScan().then(res => {
           App.update(s => {
             s.app.documentVisitorData = res.data;
           });

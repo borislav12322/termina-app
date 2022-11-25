@@ -14,7 +14,7 @@ const Wrapper = () => {
 
   const foundFacePassPhoto = App.useState(s => s.app.foundFacePassPhoto);
 
-  console.log(foundFacePassPhoto);
+  console.log(App.getRawState().app.appConfig.mainURL);
 
   return (
     <div className={s.wrapper}>

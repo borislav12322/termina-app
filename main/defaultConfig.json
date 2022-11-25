@@ -6,7 +6,7 @@
       "display": 0,
       "type": "main",
       "kiosk": true,
-      "alwaysOnTop": false,
+      "alwaysOnTop": true,
       "zoomFactor": 1,
       "frame": false,
       "devTools": true,
@@ -22,5 +22,8 @@
   "reactPort": 3031,
   "queueId": 2,
   "zoneId": 1,
-  "satelliteId": 1
+  "satelliteId": 1,
+  "mainURL": "http://192.168.4.113:8000/api/v1/",
+  "regulaURL": "http://localhost:8080/",
+  "rfidURL": "http://localhost:8082/"
 }

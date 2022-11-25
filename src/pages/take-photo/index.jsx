@@ -6,7 +6,7 @@ import Button from '../../components/button';
 import Text from '../../components/text';
 import Title from '../../components/title';
 import { routesPaths } from '../../constans/routesPathes';
-import { dispenser, face, pass } from '../../DAL/api';
+import { dispenser, face, linkRFID, pass } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './take-photo.module.css';
@@ -45,7 +45,7 @@ const TakePhoto = () => {
           }
 
           if (passInfo?.data.status === 'gived') {
-            await pass.rfid(currentVisitorPassID, passInfo.data.rfid);
+            await linkRFID(currentVisitorPassID, passInfo.data.rfid);
 
             return;
           }

@@ -1,10 +1,6 @@
-const {
-  contextBridge,
-  ipcRenderer,
-  webFrame,
-  webContents,
-} = require('electron');
 const path = require('path');
+
+const { contextBridge, ipcRenderer, webFrame, webContents } = require('electron');
 
 // By default, it writes logs to the following locations:
 
@@ -21,7 +17,8 @@ ipcRenderer.once('setZoomFactor', (event, arg) => {
 });
 
 let staticPath = '';
-ipcRenderer.invoke('setStaticPath').then((data) => {
+
+ipcRenderer.invoke('setStaticPath').then(data => {
   staticPath = data;
 });
 
@@ -36,15 +33,13 @@ const redirectPausedValueObj = {
 };
 
 ipcRenderer.on('main:setIsRedirectPaused', (event, args) => {
-  const {
-    value,
-  } = args;
+  const { value } = args;
 
   redirectPausedValueObj.value = value;
 });
 
 contextBridge.exposeInMainWorld('api', {
-  log: (options) => {
+  log: options => {
     return ipcRenderer.invoke('log', options);
   },
   getAppVersion: () => {
@@ -53,17 +48,18 @@ contextBridge.exposeInMainWorld('api', {
   getConfig: () => {
     return ipcRenderer.invoke('getConfig');
   },
-  printPdf: (arrayBuffer) => {
+  printPdf: arrayBuffer => {
     return ipcRenderer.invoke('printPdf', arrayBuffer);
   },
   cancelAllPrint: () => {
     console.log('Была ошибка в принтере, очищаем печать!');
+
     return ipcRenderer.invoke('cancelAllPrint');
   },
-  getFileFromStatic: (file) => {
+  getFileFromStatic: file => {
     return path.join(staticPath, file);
   },
-  webviewSetPartitionListeners: (partitionId) => {
+  webviewSetPartitionListeners: partitionId => {
     return ipcRenderer.invoke('webview:setPartitionListeners', partitionId);
   },
   // openNativeKeyboard: () => {
@@ -81,7 +77,7 @@ contextBridge.exposeInMainWorld('api', {
   isRedirectPaused: () => {
     return redirectPausedValueObj.value;
   },
-  setIsRedirectPaused: (bool) => {
+  setIsRedirectPaused: bool => {
     redirectPausedValueObj.value = bool;
   },
   setUnpauseDestroyedListener: () => {
