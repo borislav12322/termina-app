@@ -6,7 +6,7 @@ import Button from '../../components/button';
 import Input from '../../components/input';
 import Keyboard from '../../components/keyboard';
 import { routesPaths } from '../../constans/routesPathes';
-import { phone, searchPassByPhone } from '../../DAL/api';
+import { searchPassByPhone } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './phoneNumber.module.css';

@@ -6,7 +6,7 @@ import Button from '../../components/button';
 import Text from '../../components/text';
 import Title from '../../components/title';
 import { routesPaths } from '../../constans/routesPathes';
-import { dispenser, findPhotoByPass, linkRFID, pass, photoPass } from '../../DAL/api';
+import { findPhotoByPass, getDispenserCard, linkRFID } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './foundFace.module.css';
@@ -27,7 +27,7 @@ const FoundFace = () => {
         try {
           navigate(routesPaths.passSuccess);
 
-          const passInfo = await dispenser.card();
+          const passInfo = await getDispenserCard();
 
           await App.update(s => {
             s.app.dispenserInfo = passInfo;

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button';
 import TextField from '../../components/textField';
 import { routesPaths } from '../../constans/routesPathes';
-import { addPassport, passport } from '../../DAL/api';
+import { addPassport } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './documentFields.module.css';

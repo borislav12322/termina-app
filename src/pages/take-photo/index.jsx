@@ -6,7 +6,7 @@ import Button from '../../components/button';
 import Text from '../../components/text';
 import Title from '../../components/title';
 import { routesPaths } from '../../constans/routesPathes';
-import { dispenser, face, linkRFID, pass } from '../../DAL/api';
+import { getDispenserCard, linkRFID, compareFace } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './take-photo.module.css';
@@ -22,7 +22,7 @@ const TakePhoto = () => {
     e.preventDefault();
 
     try {
-      const faceCompareResponse = await face.compare(
+      const faceCompareResponse = await compareFace(
         terminalPhoto,
         `data:image/jpeg;base64,${regulaPhoto}`,
         currentVisitorPassID,
@@ -32,7 +32,7 @@ const TakePhoto = () => {
         try {
           navigate(routesPaths.passSuccess);
 
-          const passInfo = await dispenser.card();
+          const passInfo = await getDispenserCard();
 
           await App.update(s => {
             s.app.dispenserInfo = passInfo;
