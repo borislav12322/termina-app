@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from '../../components/button';
 import Input from '../../components/input';
+import InputWithMask from '../../components/inputWithMask/input';
 import Keyboard from '../../components/keyboard';
 import { routesPaths } from '../../constans/routesPathes';
 import { searchPassByPhone } from '../../DAL/api';
@@ -69,18 +70,28 @@ const PhoneNumber = () => {
         id="button_prev"
       />
       <div className={s.wrapper}>
-        <Input
+        {/* <Input */}
+        {/*  title="Номер телефона" */}
+        {/*  name="phone" */}
+        {/*  value={inputValues} */}
+        {/*  onChange={onChange} */}
+        {/*  maxSymbols={11} */}
+        {/*  type="text" */}
+        {/*  onFocus={() => { */}
+        {/*    App.update(s => { */}
+        {/*      s.app.isKeyboardVisible = true; */}
+        {/*    }); */}
+        {/*  }} */}
+        {/* /> */}
+
+        <InputWithMask
+          mask="+7(999)999-99-99"
+          placeholder="+7(***)***-**-**"
+          inputType="tel"
           title="Номер телефона"
-          name="phone"
           value={inputValues}
           onChange={onChange}
-          maxSymbols={11}
-          type="text"
-          onFocus={() => {
-            App.update(s => {
-              s.app.isKeyboardVisible = true;
-            });
-          }}
+          name="phone"
         />
 
         {/* <Button text="Отправить" onClick={sendNumber} /> */}

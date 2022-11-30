@@ -9,15 +9,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .content {
   max-width: 800px;
   width: 100%;
-  height: 400px;
+  height: 1000px;
   background-color: #FFFFFF;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 30px;
+  overflow: auto;
+  scrollbar-color: #D63E2F #e0e0e0;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+
+.content::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+.content::-webkit-scrollbar-track {
+  background: lightgray;        /* color of the tracking area */
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #D63E2F;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid gray;  /* creates padding around scroll thumb */
 }

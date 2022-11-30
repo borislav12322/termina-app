@@ -4,7 +4,7 @@ import ErrorPage from '../../components/errorPage';
 import { routesPaths } from '../../constans/routesPathes';
 
 const PhoneError = () => {
-  const textError = 'Пожалуйста, введите номер телефона заново';
+  const textError = 'Пожалуйста, введите  номер телефона заново';
 
   return (
     <ErrorPage

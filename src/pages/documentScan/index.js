@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import TerminalImage from '../../assets/images/scaning.png';
 import { routesPaths } from '../../constans/routesPathes';
-import { getRegulaLastScan, regula } from '../../DAL/api';
+import { getRegulaLastScan } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './documentScan.module.css';

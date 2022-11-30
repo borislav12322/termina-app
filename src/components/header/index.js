@@ -11,8 +11,6 @@ import s from './header.module.css';
 const Header = () => {
   return (
     <header className={s.header}>
-      <Link to={routesPaths.takePhoto}>photo</Link>
-      <Link to={routesPaths.documentScan}>scan</Link>
       <div className={s.wrapper}>
         <img src={Logo} alt="логотип" />
         <Time header />
