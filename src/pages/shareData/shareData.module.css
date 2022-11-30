@@ -1,0 +1,48 @@
+.shareData {
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.text {
+  text-align: center;
+  font-family: Ubuntu, sans-serif;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 60px;
+  max-width: 952px;
+  width: 100%;
+}
+.redText {
+  color: #d63e2f;
+}
+.textUnderline {
+}
+.button {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  overflow: hidden;
+}
+
+.modalTitle {
+  font-family: Ubuntu, sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.modalText {
+  font-family: Ubuntu, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  text-align: justify;
+  overflow: hidden;
+}

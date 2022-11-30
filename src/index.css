@@ -1,13 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+#root {
+  height: 100vh;
+  background-image: url('./assets/images/bg.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-bottom: 52px;
+}
+
+#button_next {
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 33px;
+}
+
+#button_prev{
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 33px;
+}
+
+#closeBtn,
+#takePhoto,
+#repeatPhoto {
+  margin: 0;
+}
+
+#repeatButtonError {
+  margin: 0;
+  max-width: 368px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.commonTitle {
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 72px;
+  line-height: 64px;
+  text-align: center;
+  color: #4a4a49;
+}
+
+.commonText {
+  text-align: center;
+  font-family: Ubuntu, sans-serif;
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 60px;
+}
+
+.wrapperShadow {
+  box-shadow: 0 4px 12px rgba(74, 74, 73, 0.15);
+  border-radius: 40px;
+}
+
+@font-face {
+  font-family: Ubuntu, sans-serif;
+  src: url('./assets/fonts/Ubuntu-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+

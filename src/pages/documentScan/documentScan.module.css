@@ -1,0 +1,19 @@
+.documentScan {
+    margin: 0 auto;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 84px;
+    padding: 32px 124px;
+    background-color: #FFFFFF;
+    max-width: 952px;
+    width: 100%;
+}
+
+.text {
+  max-width: 705px;
+  width: 100%;
+}
