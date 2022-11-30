@@ -28,6 +28,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 30px;
+  overflow: hidden;
 }
 
 .modalTitle {
@@ -43,4 +44,5 @@
   font-size: 20px;
   line-height: 26px;
   text-align: justify;
+  overflow: hidden;
 }

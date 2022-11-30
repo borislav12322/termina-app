@@ -6,7 +6,7 @@ import Button from '../../components/button';
 import Text from '../../components/text';
 import Title from '../../components/title';
 import { routesPaths } from '../../constans/routesPathes';
-import { face } from '../../DAL/api';
+import { getDispenserCard, linkRFID, compareFace } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './take-photo.module.css';
@@ -16,18 +16,62 @@ const TakePhoto = () => {
 
   const regulaPhoto = App.useState(s => s?.app?.documentVisitorData?.Image?.image);
   const terminalPhoto = App.useState(s => s?.app?.terminalVisitorPhoto);
+  const currentVisitorPassID = App.useState(s => s?.app?.currentVisitorPassID);
 
-  const buttonHandle = e => {
+  const buttonHandler = async e => {
     e.preventDefault();
-    face
-      .compare(`data:image/jpeg;base64,${regulaPhoto}`, terminalPhoto)
-      .then((res, rej) => {
-        console.log(res.data);
-      })
-      .catch(e => {
+
+    try {
+      const faceCompareResponse = await compareFace(
+        terminalPhoto,
+        `data:image/jpeg;base64,${regulaPhoto}`,
+        currentVisitorPassID,
+      );
+
+      if (faceCompareResponse.data.result === true) {
+        try {
+          navigate(routesPaths.passSuccess);
+
+          const passInfo = await getDispenserCard();
+
+          await App.update(s => {
+            s.app.dispenserInfo = passInfo;
+          });
+
+          if (passInfo?.data.status === 'empty bin') {
+            await navigate(routesPaths.emptyBin);
+
+            return;
+          }
+
+          if (passInfo?.data.status === 'gived') {
+            await linkRFID(currentVisitorPassID, passInfo.data.rfid);
+
+            return;
+          }
+
+          if (passInfo.data.status === 'took back') {
+            await navigate(routesPaths.cardTakeAway);
+
+            return;
+          }
+        } catch (e) {
+          navigate(routesPaths.cardTakeAway);
+        } finally {
+          App.update(s => {
+            s.app.isLoading = false;
+          });
+        }
+      }
+
+      if (faceCompareResponse.data.result === false) {
         navigate(routesPaths.repeatErrorPhotoResult);
-      });
-    // navigate('');
+
+        return;
+      }
+    } catch (e) {
+      navigate(routesPaths.repeatErrorPhotoResult);
+    }
   };
 
   const videoRef = useRef(null);
@@ -97,6 +141,7 @@ const TakePhoto = () => {
     const link = document.createElement('a');
 
     setPhoto(data);
+
     App.update(s => {
       s.app.terminalVisitorPhoto = data;
     });
@@ -195,7 +240,7 @@ const TakePhoto = () => {
         text="Далее"
         type="button"
         paddingLeftRight="36px"
-        onClick={buttonHandle}
+        onClick={buttonHandler}
         id="button_next"
       />
     </div>

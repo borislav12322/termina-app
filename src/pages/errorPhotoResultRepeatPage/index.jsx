@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ErrorPage from '../../components/errorPage';
+import { routesPaths } from '../../constans/routesPathes';
 
 const ErrorPhotoResultRepeatPage = () => {
   const textErrorOne = 'Фотография посетителя не совпадает с фотографией в паспорте';
@@ -13,6 +14,7 @@ const ErrorPhotoResultRepeatPage = () => {
       textOne={textErrorOne}
       textTwo={textErrorTwo}
       isRepeatButtonVisible
+      errorPagePath={routesPaths.takePhoto}
     />
   );
 };

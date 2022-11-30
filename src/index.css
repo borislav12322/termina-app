@@ -32,6 +32,13 @@ code {
   right: 33px;
 }
 
+#button_prev{
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 33px;
+}
+
 #closeBtn,
 #takePhoto,
 #repeatPhoto {

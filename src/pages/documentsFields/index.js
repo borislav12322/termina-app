@@ -3,24 +3,27 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../components/button';
-import Input from '../../components/input';
 import TextField from '../../components/textField';
 import { routesPaths } from '../../constans/routesPathes';
+import { addPassport } from '../../DAL/api';
 import { App } from '../../store';
 
 import s from './documentFields.module.css';
 
 const DocumentFields = () => {
+  const visitorInfo = App.useState(
+    s => s.app.documentVisitorData?.OcrFields?.DocVisualExtendedInfo?.pArrayFields,
+  );
+
+  const currentVisitorData = App.useState(s => s.app.documentVisitorData);
+
+  const currentVisitorPassportID = App.useState(s => s.app.currentVisitorPassportID);
+
   const navigate = useNavigate();
 
   const onButtonInCorrectHandle = e => {
     e.preventDefault();
-    navigate(routesPaths.shareData);
-  };
-
-  const onButtonCorrectHandle = e => {
-    e.preventDefault();
-    navigate(routesPaths.takePhoto);
+    navigate(routesPaths.documentScan);
   };
 
   const [inputValues, setInputValues] = useState({
@@ -39,10 +42,6 @@ const DocumentFields = () => {
     setInputValues(oldValue => ({ ...oldValue, [name]: value }));
   };
 
-  const visitorInfo = App.useState(
-    s => s.app.documentVisitorData?.OcrFields?.DocVisualExtendedInfo?.pArrayFields,
-  );
-
   const currentYear = new Date().getFullYear().toString().slice(-2);
 
   const modifiedData = visitorInfo && visitorInfo?.[8]?.Buf_Text;
@@ -55,6 +54,26 @@ const DocumentFields = () => {
 
   const photo = App.useState(s => s.app.documentVisitorData?.Image?.image);
 
+  const passportPayload = {
+    number: visitorInfo?.[5]?.Buf_Text,
+    date_of_birth: `${fullYear}-${month}-${day}`,
+  };
+
+  const onButtonCorrectHandle = async e => {
+    e.preventDefault();
+
+    try {
+      const passportData = await addPassport(passportPayload, currentVisitorPassportID);
+
+      navigate(routesPaths.takePhoto);
+    } catch (e) {
+      console.error(e);
+      navigate(routesPaths.emptyPassport);
+    }
+  };
+
+  console.log(visitorInfo);
+
   return (
     <div className={s.documentFields}>
       <div className={s.wrapper}>
@@ -63,7 +82,10 @@ const DocumentFields = () => {
           <TextField title="Фамилия" text={visitorInfo?.[22]?.Buf_Text} />
           <TextField title="Имя" text={visitorInfo?.[23]?.Buf_Text} />
           <TextField title="Отчество" text={visitorInfo?.[24]?.Buf_Text} />
-          <TextField title="Дата рождения" text={`${day}.${month}.${fullYear}`} />
+          <TextField
+            title="Дата рождения"
+            text={`${day || ''}.${month || ''}.${fullYear || ''}`}
+          />
           <TextField title="Серия и номер документа" text={visitorInfo?.[5]?.Buf_Text} />
         </div>
         <div className={s.currentBox}>

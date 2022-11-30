@@ -1,0 +1,43 @@
+.label {
+  display: flex;
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 32px;
+  text-align: center;
+  color: #bac1c6;
+  background-color: #ffffff;
+  padding: 3px;
+  left: 30px;
+  top: -20px;
+}
+
+.input {
+  width: 100%;
+  background: #ffffff;
+  border: 5px solid #bac1c6;
+  border-radius: 20px;
+  height: 108px;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 72px;
+  text-align: center;
+  color: #4a4a49;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}

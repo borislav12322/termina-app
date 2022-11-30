@@ -1,5 +1,3 @@
-import DocumentFields from '../pages/documentsFields';
-
 export const routesPaths = {
   login: '/',
   shareData: '/share-data',
@@ -10,4 +8,13 @@ export const routesPaths = {
   repeatErrorPhotoResult: '/repeat-photo-result-error',
   scanError: '/scan-error',
   documentFields: '/document-fields',
+  phoneNumber: '/phone',
+  phoneError: '/phone-error',
+  passSuccess: '/pass-success',
+  searchChosen: '/search-chosen',
+  foundFace: '/found-face',
+  cardTakeAway: '/take-away',
+  emptyPassport: '/empty-passport',
+  emptyBin: '/empty-bin',
+  passNotFound: '/pass-not',
 };
